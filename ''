@@ -1,0 +1,48 @@
+import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart'
+    show AppBar, IconButton, Scaffold, Icons;
+import 'package:responsi/model/recipe.dart' show Recipe;
+
+class RecipeDetailPage extends StatelessWidget {
+  const new(this.recipe, {super.key});
+
+  final Recipe recipe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_left)),
+      ),
+      body: Padding(
+        padding: const EdgeInsetsGeometry.all(12),
+        child: Column(
+          children: [
+            Image.network(recipe.image),
+            Text(
+              recipe.name,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight(800)),
+            ),
+            Text(
+              "${recipe.cuisine} * ${recipe.mealType.fold("", (previous, current) => previous.isEmpty ? current : '$previous, $current')}",
+            ),
+
+            Text(
+              "Bahan-bahan: ",
+              style: TextStyle(fontWeight: FontWeight(800)),
+            ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: recipe.ingredient.length,
+                itemBuilder: (context, index) {
+                  return Text("${index + 1}. ${recipe.ingredient[index]}");
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
