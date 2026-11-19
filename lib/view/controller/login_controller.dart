@@ -7,7 +7,7 @@ class LoginController extends GetxController {
   static const String _usernameKey = 'loggedInUsername';
 
   static const String correctUsername = 'faris';
-  static const String correctPassword = '124240139';
+  static const String correctPassword = '139';
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
